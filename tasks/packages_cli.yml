@@ -1,0 +1,22 @@
+---
+# PACKAGES - CLI
+- name: libselinux-python
+  package:
+    name: libselinux-python
+    state: installed
+- name: encfs
+  package:
+    name: encfs
+    state: installed
+- name: vim
+  package:
+    name: vim-enhanced
+    state: installed
+- name: zsh
+  package:
+    name: zsh
+    state: installed
+- name: git
+  package:
+    name: git
+    state: installed

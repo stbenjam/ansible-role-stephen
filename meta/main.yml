@@ -1,0 +1,8 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: stephen
+  description: Setup things the way I like 
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.0

@@ -1,0 +1,18 @@
+---
+# PACKAGES - GUI
+- name: Tilix Terminal
+  package:
+    name: tilix
+    state: installed
+- name: Zim Wiki
+  package:
+    name: Zim
+    state: installed
+- name: Firefox
+  package:
+    name: firefox
+    state: installed
+- name: virt-manager
+  package:
+    name: virt-manager
+    state: installed

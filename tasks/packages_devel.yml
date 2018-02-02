@@ -1,0 +1,14 @@
+---
+# PACKAGES - Devel
+- name: GCC
+  package:
+    name: gcc
+    state: installed
+- name: Flex
+  package:
+    name: flex,flex-devel
+    state: installed
+- name: Bison
+  package:
+    name: bison,bison-devel
+    state: installed

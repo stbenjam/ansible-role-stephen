@@ -1,0 +1,6 @@
+---
+# Packages
+- include_tasks: packages_gui.yml
+  when: stephen_gui
+- include_tasks: packages_cli.yml
+- include_tasks: packages_devel.yml
