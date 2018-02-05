@@ -1,0 +1,11 @@
+---
+- name: Make home directory structure
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /home/{{ stephen_user }}/Encrypted
+    - /home/{{ stephen_user }}/bin
+    - /home/{{ stephen_user }}/git
+  become_user: "{{ stephen_user }}"
+

@@ -1,0 +1,11 @@
+---
+- name: Clone dotfiles
+  git:
+    repo: 'https://github.com/stbenjam/dotfiles.git'
+    dest: "/home/{{ stephen_user }}/.dotfiles"
+  become_user: "{{ stephen_user }}"
+- name: Install dotfiles
+  command: make
+  args:
+    chdir: "/home/{{ stephen_user }}/.dotfiles"
+  become_user: "{{ stephen_user }}"

@@ -12,11 +12,11 @@
   package:
     name: vim-enhanced
     state: installed
-- name: zsh
+- name: Shells
   package:
     name: zsh
     state: installed
-- name: git
+- name: Source control
   package:
-    name: git
+    name: git,hub,svn
     state: installed
