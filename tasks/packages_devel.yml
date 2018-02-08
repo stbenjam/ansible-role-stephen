@@ -4,11 +4,8 @@
   package:
     name: gcc
     state: installed
-- name: Flex
+# Packages for CSCI E-95
+- name: Compiler dev packages
   package:
-    name: flex,flex-devel
-    state: installed
-- name: Bison
-  package:
-    name: bison,bison-devel
+    name: flex,flex-devel,bison,bison-devel,spim
     state: installed
