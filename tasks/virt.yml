@@ -1,0 +1,63 @@
+---
+# Libvirt
+- name: Libvirt
+  package:
+    name: libvirt,libvirt-client,libvirt-daemon-config-network
+    state: installed
+- name: virt-manager
+  package:
+    name: virt-manager
+    state: installed
+  when: stephen_gui
+- name: libvirtd service
+  service:
+    name: libvirtd
+    state: started
+- name: nested virt
+  copy:
+    dest: /etc/modprobe.d/kvm.conf
+    content: options kvm_intel nested=1
+
+# Vagrant
+- name: Vagrant
+  package:
+    name: vagrant,vagrant-libvirt,vagrant-hostmanager
+    state: installed
+- name: polkit - manage VM's
+  copy:
+    dest: /etc/polkit-1/rules.d/80-libvirt.rules
+    owner: root
+    group: root
+    mode: 0644
+    content: |
+      polkit.addRule(function(action, subject) {
+        if (action.id == "org.libvirt.unix.manage" &&
+          subject.isInGroup("wheel")) {
+            return polkit.Result.YES;
+          }
+      });
+
+# NFS For Vagrant Shared Folders
+- name: nfs-utils
+  package:
+    name: nfs-utils
+    state: installed
+- name: nfs-server
+  service:
+    name: nfs-server
+    state: started
+- name: firewalld nfs # FIXME runs everytime
+  shell: "{{ item }}"
+  with_items:
+    # Don't allow this on the default zone
+    - "firewall-cmd --permanent --remove-service=nfs"
+    - "firewall-cmd --permanent --remove-service=rpc-bind"
+    - "firewall-cmd --permanent --remove-service=mountd"
+    # Only allow NFS on Internal Zone
+    - "firewall-cmd --permanent --add-service=nfs --zone=internal"
+    - "firewall-cmd --permanent --add-service=rpc-bind --zone=internal"
+    - "firewall-cmd --permanent --add-service=mountd --zone=internal"
+    # Make libvirt birdge internal
+    - "nmcli connection modify virbr0 connection.zone internal"
+    # Reload
+    - "firewall-cmd --reload"

@@ -5,3 +5,5 @@
 - include_tasks: packages_devel.yml
 - include_tasks: directories.yml
 - include_tasks: dotfiles.yml
+- include_tasks: virt.yml
+
